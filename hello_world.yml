@@ -5,3 +5,8 @@
       debug:
         msg: "Hello World!"
 
+- name: show dictionary
+    debug:
+      msg: "{{item.key}}: {{item.value}}"
+    with_dict: {a: 1, b: 2, c: 3}
+
