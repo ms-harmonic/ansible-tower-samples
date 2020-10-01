@@ -10,7 +10,7 @@
         msg: "Hello World!"
 
     - name: update dictionary
-      debug:
+      set_fact:
         k8s_cluster_labels_formatted2: "{{ k8s_cluster_labels_formatted2 | combine({'{{item.key}}': '{{item.value}}'}) }}"
       with_dict: "{{ k8s_cluster_labels_formatted }}"
       
