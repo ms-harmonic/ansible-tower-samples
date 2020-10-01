@@ -1,12 +1,19 @@
 - name: Hello World Sample
   hosts: all
+  vars:
+    - k8s_cluster_labels_formatted:
+        service_level: 'vos360_production_service'
+    - k8s_cluster_labels_formatted2: {}
   tasks:
     - name: Hello Message
       debug:
         msg: "Hello World!"
 
-    - name: show dictionary
+    - name: update dictionary
       debug:
-        msg: "{{item.key}}: {{item.value}}"
-      with_dict: {a: 1, b: 2, c: 3}
-
+        k8s_cluster_labels_formatted2: "{{ k8s_cluster_labels_formatted2 | combine({'{{item.key}}': '{{item.value}}'}) }}"
+      with_dict: "{{ k8s_cluster_labels_formatted }}"
+      
+    - name: Show dictionary
+      debug:
+        msg: {{ k8s_cluster_labels_formatted2 }}
