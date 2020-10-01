@@ -16,4 +16,4 @@
       
     - name: Show dictionary
       debug:
-        msg: {{ k8s_cluster_labels_formatted2 }}
+        msg: "{{ k8s_cluster_labels_formatted2 }}"
