@@ -16,4 +16,5 @@
       
     - name: Show dictionary
       debug:
-        msg: "{{ k8s_cluster_labels_formatted2 }}"
+        msg: "{{item.key}}: {{item.value}}"
+      with_dict: "{{ k8s_cluster_labels_formatted2 }}"
